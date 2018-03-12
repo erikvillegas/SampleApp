@@ -10,16 +10,12 @@ import UIKit
 import PromiseKit
 import Alamofire
 
-enum AppError: Error {
-    case userMappingFailed
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    // Create a function that fulfills this requirement:
+    // Create an async function that fulfills this requirement:
     // input: Message string containing user IDs
     // output: Same message string, with each user ID replaced with the appropriate handle
     
@@ -34,8 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // GET http://159.65.79.138/user/<userId>
     
     // NOTE: user IDs begin with an uppercase "U", followed by 5 digits 0-9.
+    
+    // Resources:
+    // Making a simple GET request: https://github.com/Alamofire/Alamofire/blob/master/Documentation/Usage.md#making-a-request
+    // PromiseKit docs: https://github.com/mxcl/PromiseKit/tree/4.4.0/Documentation
+    
     func convertMessage(input: String) -> Promise<String> {
-        // TODO :)
+        return Promise(value: "TODO :)")
     }
     
     
