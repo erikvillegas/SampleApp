@@ -7,40 +7,49 @@
 //
 
 import UIKit
+import PromiseKit
+import Alamofire
+
+enum AppError: Error {
+    case userMappingFailed
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    // Create a function that fulfills this requirement:
+    // input: Message string containing user IDs
+    // output: Same message string, with each user ID replaced with the appropriate handle
+    
+    // Example:
+    // this input: "Hello U59184."
+    // should return this output: "Hello @jim"
+    
+    // this input: "Hey U04713, want to have lunch with U14833 and U81435?"
+    // should return this output: "Hey @michael, want to have lunch with @dwight and @angela?"
+    
+    // Use this web service to convert a user identifier to a user handle:
+    // GET http://159.65.79.138/user/<userId>
+    
+    // NOTE: user IDs begin with an uppercase "U", followed by 5 digits 0-9.
+    func convertMessage(input: String) -> Promise<String> {
+        // TODO :)
+    }
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        let input = "Hello U59184."
+        self.convertMessage(input: input).then { output in
+            print(output)
+        }.catch { _ in
+            print("oops, could not convert the message!")
+        }
+        
+        
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }
 
